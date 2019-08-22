@@ -16,9 +16,14 @@ mod tests {
         if let Some(tree) = &db.tree {
             let hash = tree.node().hash();
             assert_eq!("b18fa953ef750f27c04b1119d96b9932a7c8806d", hex::encode(&hash));
+            let v = tree.get(b"key");
+            assert_eq!(v, b"value2");
         } else {
             assert!(false, "foo");
         }
+
+        let v = db.get(b"key");
+        assert_eq!(v, b"value2");
 
 
 //        let mut batch: Vec<TreeBatchEntry> = vec![
